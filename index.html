@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Trip Ledger Mobile | TRP-884291-NYC</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@500&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;display=swap" rel="stylesheet" />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              error: "#ba1a1a",
+              "surface-variant": "#e0e3e5",
+              outline: "#76777d",
+              "on-primary-fixed-variant": "#3f465c",
+              "secondary-container": "#d5e3fd",
+              "on-secondary-container": "#57657b",
+              primary: "#000000",
+              "error-container": "#ffdad6",
+              "tertiary-fixed": "#c9e6ff",
+              "surface-container-high": "#e6e8ea",
+              secondary: "#515f74",
+              "on-secondary-fixed-variant": "#3a485c",
+              "on-tertiary-fixed-variant": "#004c6e",
+              "on-secondary-fixed": "#0d1c2f",
+              "surface-container-highest": "#e0e3e5",
+              "on-error-container": "#93000a",
+              "on-tertiary-fixed": "#001e2f",
+              "primary-container": "#131b2e",
+              "surface-dim": "#d8dadc",
+              "tertiary-fixed-dim": "#89ceff",
+              "surface-container": "#eceef0",
+              "on-primary-fixed": "#131b2e",
+              "secondary-fixed-dim": "#b9c7e0",
+              "on-primary-container": "#7c839b",
+              background: "#f7f9fb",
+              "primary-fixed-dim": "#bec6e0",
+              "surface-tint": "#565e74",
+              "surface-container-low": "#f2f4f6",
+              "secondary-fixed": "#d5e3fd",
+              "on-primary": "#ffffff",
+              "inverse-primary": "#bec6e0",
+              "on-background": "#191c1e",
+              "on-surface": "#191c1e",
+              "on-error": "#ffffff",
+              "on-tertiary": "#ffffff",
+              "tertiary-container": "#001e2f",
+              surface: "#f7f9fb",
+              "surface-bright": "#f7f9fb",
+              "inverse-surface": "#2d3133",
+              "surface-container-lowest": "#ffffff",
+              "on-surface-variant": "#45464d",
+              "on-tertiary-container": "#008cc7",
+              "outline-variant": "#c6c6cd",
+              "on-secondary": "#ffffff",
+              tertiary: "#000000",
+              "inverse-on-surface": "#eff1f3",
+              "primary-fixed": "#dae2fd"
+            },
+            borderRadius: {
+              DEFAULT: "0.125rem",
+              lg: "0.25rem",
+              xl: "0.5rem",
+              full: "0.75rem"
+            },
+            spacing: {
+              "stack-compact": "8px",
+              "section-gap": "32px",
+              "stack-default": "16px",
+              gutter: "16px",
+              unit: "4px",
+              "container-padding": "24px"
+            },
+            fontFamily: {
+              "data-mono": ["JetBrains Mono"],
+              "display-sm": ["Inter"],
+              "label-caps": ["Inter"],
+              "body-md": ["Inter"],
+              "body-lg": ["Inter"],
+              "headline-sm": ["Inter"],
+              "body-sm": ["Inter"],
+              "headline-md": ["Inter"]
+            },
+            fontSize: {
+              "data-mono": ["13px", { lineHeight: "20px", fontWeight: "500" }],
+              "display-sm": ["30px", { lineHeight: "38px", letterSpacing: "-0.02em", fontWeight: "700" }],
+              "label-caps": ["11px", { lineHeight: "16px", letterSpacing: "0.05em", fontWeight: "700" }],
+              "body-md": ["14px", { lineHeight: "20px", fontWeight: "400" }],
+              "body-lg": ["16px", { lineHeight: "24px", fontWeight: "400" }],
+              "headline-sm": ["20px", { lineHeight: "28px", fontWeight: "600" }],
+              "body-sm": ["12px", { lineHeight: "18px", fontWeight: "400" }],
+              "headline-md": ["24px", { lineHeight: "32px", letterSpacing: "-0.01em", fontWeight: "600" }]
+            }
+          }
+        }
+      };
+    </script>
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        vertical-align: middle;
+      }
+
+      .hide-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+
+      .hide-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+
+      .profit-banner {
+        position: sticky;
+        top: 64px;
+        z-index: 40;
+        background: rgba(255, 255, 255, 0.9);
+        backdrop-filter: blur(8px);
+      }
+
+      body {
+        min-height: max(884px, 100dvh);
+      }
+    </style>
+  </head>
+  <body class="bg-background text-on-surface font-body-md overflow-x-hidden pb-24">
+    <header class="bg-surface fixed top-0 left-0 right-0 h-16 flex items-center px-4 z-50 border-b border-outline-variant">
+      <div class="flex items-center gap-3">
+        <span class="material-symbols-outlined text-primary" data-icon="account_balance">account_balance</span>
+        <span class="font-headline-sm text-headline-sm font-extrabold text-primary">Financial Overview</span>
+      </div>
+      <div class="ml-auto flex items-center gap-4">
+        <span class="material-symbols-outlined text-on-surface-variant" data-icon="notifications">notifications</span>
+        <div class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant">
+          <img alt="Accounting officer profile" data-alt="A professional headshot of a logistics accounting manager in a clean, high-key office environment. The image uses a modern light-mode aesthetic with soft shadows and a neutral gray background. The subject is wearing business casual attire, reflecting corporate precision and institutional trust." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCvajVLcCho4xg8X1da-uahIjAOv4s48y1V50HHU9KGUrNDKDCg-Kg0-rQWUWJIzjWzU_SFVUx3gv5rtFcma44Cc3D7KpA0J_jewvHbTC7Eni-TCeetsaf84TnfloqW1luPc9KtJdXPKKWv98SwYiu1267T4K1tu-LYpd9NwqfkqSdkp_JhLstdj1JrTJolu2gyM4IYGQbjil_hAit_Mr21jiRX7ghVCeD6MdprBoPAv8S6WOAxOCgYqHpoB3twKBUdnW-FCBt6kbg" />
+        </div>
+      </div>
+    </header>
+
+    <main class="mt-16 px-4 py-4 space-y-4">
+      <nav class="flex items-center space-x-2 text-on-surface-variant font-body-sm mb-2 overflow-x-auto whitespace-nowrap hide-scrollbar">
+        <span>Dashboard</span>
+        <span class="material-symbols-outlined text-[14px]" data-icon="chevron_right">chevron_right</span>
+        <span>Trip Ledger</span>
+        <span class="material-symbols-outlined text-[14px]" data-icon="chevron_right">chevron_right</span>
+        <span class="text-primary font-semibold">TRP-884291-NYC</span>
+      </nav>
+
+      <div class="bg-surface-container-lowest p-4 rounded-lg border border-outline-variant">
+        <div class="flex justify-between items-start mb-4">
+          <div>
+            <h1 class="font-headline-sm text-headline-sm font-bold text-primary">TRP-884291-NYC</h1>
+            <div class="flex items-center gap-2 mt-1">
+              <span class="bg-[#FFF4E5] text-[#B45309] text-[10px] uppercase font-bold px-2 py-0.5 rounded tracking-wider">Awaiting Settlement</span>
+            </div>
+          </div>
+          <button class="bg-primary text-on-primary px-4 py-2 rounded font-semibold text-body-sm flex items-center gap-2">
+            <span class="material-symbols-outlined text-[18px]" data-icon="check_circle">check_circle</span>
+            Finalize Trip
+          </button>
+        </div>
+
+        <div class="grid grid-cols-2 gap-4 pt-4 border-t border-outline-variant">
+          <div>
+            <p class="text-[10px] uppercase font-bold text-on-surface-variant mb-1">Vehicle Info</p>
+            <div class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-[16px] text-secondary" data-icon="local_shipping">local_shipping</span>
+              <span class="font-data-mono text-data-mono">NY-98-XQ-2024</span>
+            </div>
+          </div>
+          <div>
+            <p class="text-[10px] uppercase font-bold text-on-surface-variant mb-1">Route</p>
+            <div class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-[16px] text-secondary" data-icon="route">route</span>
+              <span class="font-body-sm font-semibold">NYC → BOS</span>
+            </div>
+          </div>
+          <div>
+            <p class="text-[10px] uppercase font-bold text-on-surface-variant mb-1">Load Weight</p>
+            <div class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-[16px] text-secondary" data-icon="weight">weight</span>
+              <span class="font-body-sm font-semibold">24.5 MT</span>
+            </div>
+          </div>
+          <div>
+            <p class="text-[10px] uppercase font-bold text-on-surface-variant mb-1">Primary Party</p>
+            <span class="font-body-sm font-semibold">Atlantic Logistics Inc.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="profit-banner -mx-4 px-4 py-3 border-b border-outline-variant flex items-center justify-between">
+        <div>
+          <p class="text-[10px] uppercase font-bold text-on-surface-variant">Net Estimated Profit</p>
+          <h2 class="font-display-sm text-display-sm font-bold text-primary">$3,600.00</h2>
+        </div>
+        <div class="text-right">
+          <p class="text-[10px] uppercase font-bold text-on-surface-variant">Margin</p>
+          <span class="bg-emerald-50 text-emerald-700 font-bold px-2 py-1 rounded-full text-body-sm">28.5%</span>
+        </div>
+      </div>
+
+      <div class="flex p-1 bg-surface-container rounded-lg" role="tablist" aria-label="Accounting views">
+        <button class="flex-1 py-2 text-center text-body-sm font-bold rounded-md bg-white shadow-sm text-primary transition-all" id="tab-party" onclick="switchAccounting('party')" type="button" role="tab" aria-selected="true" aria-controls="party-section">
+          Party View
+        </button>
+        <button class="flex-1 py-2 text-center text-body-sm font-bold rounded-md text-on-surface-variant hover:bg-white/50 transition-all" id="tab-driver" onclick="switchAccounting('driver')" type="button" role="tab" aria-selected="false" aria-controls="driver-section">
+          Driver View
+        </button>
+      </div>
+
+      <section class="space-y-4" id="party-section" role="tabpanel" aria-labelledby="tab-party">
+        <div class="bg-white p-4 rounded-lg border border-outline-variant">
+          <div class="flex items-center gap-2 mb-4">
+            <span class="material-symbols-outlined text-primary" data-icon="corporate_fare">corporate_fare</span>
+            <h3 class="font-headline-sm text-headline-sm font-bold">Party Ledger</h3>
+          </div>
+          <div class="space-y-3">
+            <div class="flex justify-between items-center py-2 border-b border-slate-50">
+              <span class="text-on-surface-variant text-body-sm">Freight Rate (Per MT)</span>
+              <span class="font-data-mono text-data-mono font-bold">$450.00</span>
+            </div>
+            <div class="flex justify-between items-center py-2 border-b border-slate-50">
+              <span class="text-on-surface-variant text-body-sm">Detention Charges</span>
+              <span class="font-data-mono text-data-mono text-emerald-600">+$1,200.00</span>
+            </div>
+            <div class="pt-2">
+              <p class="text-[10px] uppercase font-bold text-on-surface-variant mb-2">Deductions</p>
+              <div class="bg-surface-container-low p-3 rounded-lg space-y-2">
+                <div class="flex justify-between items-center">
+                  <span class="text-on-surface-variant text-body-sm">Bilty/Chalan</span>
+                  <span class="font-data-mono text-data-mono text-error">-$50.00</span>
+                </div>
+                <div class="flex justify-between items-center">
+                  <span class="text-on-surface-variant text-body-sm">TDS (2%)</span>
+                  <span class="font-data-mono text-data-mono text-error">-$220.00</span>
+                </div>
+                <div class="flex justify-between items-center">
+                  <span class="text-on-surface-variant text-body-sm">Other Deductions</span>
+                  <span class="font-data-mono text-data-mono text-error">-$100.00</span>
+                </div>
+              </div>
+            </div>
+            <div class="flex justify-between items-center py-2 border-b border-slate-50">
+              <span class="text-on-surface-variant text-body-sm">Advance Received</span>
+              <span class="font-data-mono text-data-mono font-bold">-$4,000.00</span>
+            </div>
+            <div class="mt-4 bg-primary text-on-primary p-4 rounded-lg">
+              <div class="flex justify-between mb-1">
+                <span class="text-[10px] uppercase font-bold opacity-70">Final Receivable</span>
+                <span class="text-[10px] uppercase font-bold opacity-70">Total Receivable</span>
+              </div>
+              <div class="flex justify-between items-baseline">
+                <span class="text-headline-md font-bold">$7,855.00</span>
+                <span class="font-data-mono text-body-sm opacity-90">$12,225.00</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="space-y-4 hidden" id="driver-section" role="tabpanel" aria-labelledby="tab-driver" aria-hidden="true">
+        <div class="bg-white p-4 rounded-lg border border-outline-variant">
+          <div class="flex items-center gap-2 mb-4">
+            <span class="material-symbols-outlined text-primary" data-icon="person">person</span>
+            <h3 class="font-headline-sm text-headline-sm font-bold">Driver Ledger</h3>
+          </div>
+          <div class="space-y-3">
+            <div class="flex justify-between items-center py-2 border-b border-slate-50">
+              <span class="text-on-surface-variant text-body-sm">Driver Fixed Rate</span>
+              <span class="font-data-mono text-data-mono font-bold">$8,500.00</span>
+            </div>
+            <div class="flex justify-between items-center py-2 border-b border-slate-50">
+              <span class="text-on-surface-variant text-body-sm">Brokerage/Comm.</span>
+              <span class="font-data-mono text-data-mono text-error">-$250.00</span>
+            </div>
+            <div class="pt-2">
+              <p class="text-[10px] uppercase font-bold text-on-surface-variant mb-2">Ancillary &amp; Cuts</p>
+              <div class="bg-surface-container-low p-3 rounded-lg space-y-2">
+                <div class="flex justify-between items-center">
+                  <span class="text-on-surface-variant text-body-sm">Pipe &amp; Khuta</span>
+                  <span class="font-data-mono text-data-mono text-error">-$120.00</span>
+                </div>
+                <div class="flex justify-between items-center">
+                  <span class="text-on-surface-variant text-body-sm">Bilty Cut</span>
+                  <span class="font-data-mono text-data-mono text-error">-$45.00</span>
+                </div>
+                <div class="flex justify-between items-center">
+                  <span class="text-on-surface-variant text-body-sm">Balance Cut</span>
+                  <span class="font-data-mono text-data-mono text-error">-$10.00</span>
+                </div>
+              </div>
+            </div>
+            <div class="flex justify-between items-center py-2 border-b border-slate-50">
+              <span class="text-on-surface-variant text-body-sm">Advance Paid</span>
+              <span class="font-data-mono text-data-mono font-bold">-$5,000.00</span>
+            </div>
+            <div class="mt-4 bg-secondary text-on-secondary p-4 rounded-lg">
+              <div class="flex justify-between mb-1">
+                <span class="text-[10px] uppercase font-bold opacity-70">Remaining Balance</span>
+                <span class="text-[10px] uppercase font-bold opacity-70">Final Amount</span>
+              </div>
+              <div class="flex justify-between items-baseline">
+                <span class="text-headline-md font-bold">$3,075.00</span>
+                <span class="font-data-mono text-body-sm opacity-90">$8,075.00</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="space-y-4">
+        <div class="bg-surface-container-high p-4 rounded-lg">
+          <h3 class="font-headline-sm text-headline-sm font-bold mb-4">Internal Documentation</h3>
+          <div class="space-y-4 mb-6">
+            <div class="flex gap-3">
+              <div class="flex-shrink-0 w-8 h-8 bg-white rounded-full border border-outline flex items-center justify-center">
+                <span class="material-symbols-outlined text-[16px]" data-icon="edit_note">edit_note</span>
+              </div>
+              <div class="flex-grow">
+                <div class="flex justify-between mb-1">
+                  <span class="text-body-sm font-bold">M. Roberts</span>
+                  <span class="text-[10px] text-on-surface-variant">2h ago</span>
+                </div>
+                <p class="text-body-sm text-on-surface-variant leading-tight">Verified Bilty Cut charges with terminal supervisor. Detention approved by party.</p>
+              </div>
+            </div>
+            <div class="flex gap-3 opacity-60">
+              <div class="flex-shrink-0 w-8 h-8 bg-white rounded-full border border-outline flex items-center justify-center">
+                <span class="material-symbols-outlined text-[16px]" data-icon="upload_file">upload_file</span>
+              </div>
+              <div class="flex-grow">
+                <div class="flex justify-between mb-1">
+                  <span class="text-body-sm font-bold">System</span>
+                  <span class="text-[10px] text-on-surface-variant">Yesterday</span>
+                </div>
+                <p class="text-body-sm text-on-surface-variant">Advance Payment Receipt #RE-290 uploaded.</p>
+              </div>
+            </div>
+          </div>
+          <div class="relative">
+            <textarea class="w-full bg-white border border-outline-variant rounded-lg p-3 text-body-sm placeholder:text-on-surface-variant/50 focus:ring-2 focus:ring-primary focus:border-transparent outline-none min-h-[80px]" placeholder="Add internal reconciliation note..."></textarea>
+            <button class="absolute bottom-3 right-3 text-primary" type="button" aria-label="Send reconciliation note">
+              <span class="material-symbols-outlined" data-icon="send">send</span>
+            </button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <nav class="fixed bottom-0 left-0 right-0 bg-surface border-t border-outline-variant h-16 flex items-center justify-around px-4 z-50" aria-label="Primary navigation">
+      <button class="flex flex-col items-center gap-1 text-on-primary-container bg-secondary-container px-4 py-1 rounded-lg" type="button">
+        <span class="material-symbols-outlined" data-icon="local_shipping" style="font-variation-settings: 'FILL' 1;">local_shipping</span>
+        <span class="text-[10px] font-bold">Trips</span>
+      </button>
+      <button class="flex flex-col items-center gap-1 text-on-surface-variant" type="button">
+        <span class="material-symbols-outlined" data-icon="assessment">assessment</span>
+        <span class="text-[10px] font-bold">Reports</span>
+      </button>
+      <button class="flex flex-col items-center gap-1 text-on-surface-variant" type="button">
+        <span class="material-symbols-outlined" data-icon="account_balance">account_balance</span>
+        <span class="text-[10px] font-bold">Ledger</span>
+      </button>
+    </nav>
+
+    <script>
+      function switchAccounting(view) {
+        const partySec = document.getElementById('party-section');
+        const driverSec = document.getElementById('driver-section');
+        const partyTab = document.getElementById('tab-party');
+        const driverTab = document.getElementById('tab-driver');
+
+        if (view === 'party') {
+          partySec.classList.remove('hidden');
+          partySec.setAttribute('aria-hidden', 'false');
+          driverSec.classList.add('hidden');
+          driverSec.setAttribute('aria-hidden', 'true');
+
+          partyTab.classList.add('bg-white', 'shadow-sm', 'text-primary');
+          partyTab.classList.remove('text-on-surface-variant');
+          partyTab.setAttribute('aria-selected', 'true');
+
+          driverTab.classList.remove('bg-white', 'shadow-sm', 'text-primary');
+          driverTab.classList.add('text-on-surface-variant');
+          driverTab.setAttribute('aria-selected', 'false');
+        } else {
+          partySec.classList.add('hidden');
+          partySec.setAttribute('aria-hidden', 'true');
+          driverSec.classList.remove('hidden');
+          driverSec.setAttribute('aria-hidden', 'false');
+
+          driverTab.classList.add('bg-white', 'shadow-sm', 'text-primary');
+          driverTab.classList.remove('text-on-surface-variant');
+          driverTab.setAttribute('aria-selected', 'true');
+
+          partyTab.classList.remove('bg-white', 'shadow-sm', 'text-primary');
+          partyTab.classList.add('text-on-surface-variant');
+          partyTab.setAttribute('aria-selected', 'false');
+        }
+      }
+
+      window.addEventListener('scroll', () => {
+        const banner = document.querySelector('.profit-banner');
+        if (window.scrollY > 100) {
+          banner.classList.add('shadow-md');
+        } else {
+          banner.classList.remove('shadow-md');
+        }
+      });
+    </script>
+  </body>
+</html>
